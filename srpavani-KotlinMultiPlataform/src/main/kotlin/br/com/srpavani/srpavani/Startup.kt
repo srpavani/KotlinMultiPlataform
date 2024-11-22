@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SrpavaniKotlinMultiPlataformApplication
+class Startup
 
 fun main(args: Array<String>) {
-	runApplication<SrpavaniKotlinMultiPlataformApplication>(*args)
+	runApplication<Startup>(*args)
 }
