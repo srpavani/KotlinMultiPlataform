@@ -1,1 +1,10 @@
-spring.application.name=srpavani-KotlinMultiPlataform
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # Driver do MySQL
+    url: jdbc:mysql://localhost:3306/kotlin?useTimezone=true&serverTimezone=UTC
+    username: root # Seu usuário do banco de dados MySQL
+    password: # Sua senha para o usuário do MySQL
+  jpa:
+    hibernate:
+      ddl-auto: update # Criação automática de tabelas (pode ser alterado para "none" em produção)
+    show-sql: false # Define se as queries serão exibidas no console

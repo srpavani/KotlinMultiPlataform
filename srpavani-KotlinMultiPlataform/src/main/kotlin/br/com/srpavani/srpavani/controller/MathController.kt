@@ -1,6 +1,7 @@
 package br.com.srpavani.srpavani.controller
 
 import br.com.srpavani.srpavani.converters.NumberConverter
+import br.com.srpavani.srpavani.math.SimpleMath
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class MathController {
 
-
+    private val math: SimpleMath = SimpleMath()
     // Mapeia o endpoint para "/sum/{name}"
     @RequestMapping(value=["/sum/{numberOne}/{number2}"])
     fun sum(@PathVariable(value = "numberOne") numberOne: String?,
@@ -16,7 +17,7 @@ class MathController {
     ): Double {
         if(!NumberConverter.isNummeric(numberOne) || !NumberConverter.isNummeric(number2))
             throw UnsupportedOperationException("please insert a numeric value")
-            return NumberConverter.convertToDouble(numberOne) + NumberConverter.convertToDouble(number2)
+            return math.sum( NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(number2))
     }
 
 
@@ -26,7 +27,8 @@ class MathController {
     ): Double {
         if(!NumberConverter.isNummeric(numberOne) || !NumberConverter.isNummeric(number2))
             throw UnsupportedOperationException("please insert a numeric value")
-        return NumberConverter.convertToDouble(numberOne) / NumberConverter.convertToDouble(number2)
+            return math.div( NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(number2))
+
     }
 
 
@@ -37,7 +39,8 @@ class MathController {
     ): Double {
         if(!NumberConverter.isNummeric(numberOne) || !NumberConverter.isNummeric(number2))
             throw UnsupportedOperationException("please insert a numeric value")
-        return NumberConverter.convertToDouble(numberOne) - NumberConverter.convertToDouble(number2)
+        return math.sub( NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(number2))
+
     }
 
 
@@ -47,7 +50,8 @@ class MathController {
     ): Double {
         if(!NumberConverter.isNummeric(numberOne) || !NumberConverter.isNummeric(number2))
             throw UnsupportedOperationException("please insert a numeric value")
-        return NumberConverter.convertToDouble(numberOne) * NumberConverter.convertToDouble(number2)
+        return math.multi( NumberConverter.convertToDouble(numberOne),NumberConverter.convertToDouble(number2))
+
     }
 
 
