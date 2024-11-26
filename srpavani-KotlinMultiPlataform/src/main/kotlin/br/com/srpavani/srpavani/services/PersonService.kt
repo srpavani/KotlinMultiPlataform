@@ -42,7 +42,7 @@ class PersonService {
         entity.address = person.address
         entity.gender = person.gender
         logger.info("Updating a person");
-        return entity
+        return repository.save(entity);
     }
 
     fun delete(id: Long){
