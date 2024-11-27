@@ -18,7 +18,7 @@ class TokenService(jwtProperties: JwtProperties) {
         userDetails: UserDetails,
         expirationDate: Date,
         additionalClaims: Map<String, Any> = emptyMap()
-        ):String =
+    ): String =
         Jwts.builder()
             .claims()
             .subject(userDetails.username)
@@ -33,8 +33,12 @@ class TokenService(jwtProperties: JwtProperties) {
         getAllClaims(token)
             .subject
 
+    fun isExpired(token: String): Boolean =
+        getAllClaims(token)
+            .expiration
+            .before(Date(System.currentTimeMillis()))
 
-    private fun getAllClaims(token: String): Claims{
+    private fun getAllClaims(token: String): Claims {
         val parser = Jwts.parser()
             .verifyWith(secretKey)
             .build()
@@ -44,6 +48,10 @@ class TokenService(jwtProperties: JwtProperties) {
             .payload
     }
 
+    fun isValid(token: String, userDetails: UserDetails): Boolean {
+        val email = extractEmail(token)
 
+        return userDetails.username == email && !isExpired(token)
+    }
 
 }
