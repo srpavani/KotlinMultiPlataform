@@ -8,3 +8,7 @@ spring:
     hibernate:
       ddl-auto: update # Criação automática de tabelas (pode ser alterado para "none" em produção)
     show-sql: false # Define se as queries serão exibidas no console
+jwt:
+  key: ${JWT_KEY}
+  access-token-expiration: 3600000
+  refresh-token-expiration: 86400000
